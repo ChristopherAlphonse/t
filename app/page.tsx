@@ -5,7 +5,6 @@ import { useState } from "react";
 import CTA from "@/components/cta";
 import Form from "@/components/form";
 import Logos from "@/components/logos";
-import Particles from "@/components/ui/particles";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -29,12 +28,12 @@ export default function Home() {
 
   const handleSubmit = async () => {
     if (!name || !email) {
-      toast.error("Please fill in all fields 😠");
+      toast.error("Please fill in all fields.");
       return;
     }
 
     if (!isValidEmail(email)) {
-      toast.error("Please enter a valid email address 😠");
+      toast.error("Please enter a valid email address.");
       return;
     }
 
@@ -85,21 +84,21 @@ export default function Home() {
     });
 
     toast.promise(promise, {
-      loading: "Getting you on the waitlist... 🚀",
+      loading: "Adding you to the Rolebound waitlist...",
       success: (data) => {
         setName("");
         setEmail("");
-        return "Thank you for joining the waitlist 🎉";
+        return "You are on the Rolebound waitlist.";
       },
       error: (error) => {
         if (error === "Rate limited") {
           return "You're doing that too much. Please try again later";
         } else if (error === "Email sending failed") {
-          return "Failed to send email. Please try again 😢.";
+          return "Failed to send email. Please try again.";
         } else if (error === "Notion insertion failed") {
-          return "Failed to save your details. Please try again 😢.";
+          return "Failed to save your details. Please try again.";
         }
-        return "An error occurred. Please try again 😢.";
+        return "An error occurred. Please try again.";
       },
     });
 
@@ -109,12 +108,20 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center overflow-x-clip pt-12 md:pt-24">
-      <section className="flex flex-col items-center px-4 sm:px-6 lg:px-8">
-        <Header />
+    <main
+      id="top"
+      className="flex min-h-screen w-full max-w-full flex-col items-center overflow-x-hidden bg-background">
+      <Header />
 
+      <section className="flex w-full flex-col items-center px-4 sm:px-6 lg:px-8">
         <CTA />
+      </section>
 
+      <section className="flex w-full flex-col items-center px-4 sm:px-6 lg:px-8">
+        <Logos />
+      </section>
+
+      <section className="flex w-full flex-col items-center px-4 py-32 sm:px-6 md:py-48 lg:px-8">
         <Form
           name={name}
           email={email}
@@ -123,19 +130,9 @@ export default function Home() {
           handleSubmit={handleSubmit}
           loading={loading}
         />
-
-        <Logos />
       </section>
 
       <Footer />
-
-      <Particles
-        quantityDesktop={350}
-        quantityMobile={100}
-        ease={80}
-        color={"#F7FF9B"}
-        refresh
-      />
     </main>
   );
 }

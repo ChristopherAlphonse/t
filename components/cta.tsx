@@ -1,45 +1,56 @@
+"use client";
+
 import { motion } from "framer-motion";
-import TextBlur from "@/components/ui/text-blur";
-import AnimatedShinyText from "@/components/ui/shimmer-text";
+import { ArrowRight } from "@phosphor-icons/react";
 import { containerVariants, itemVariants } from "@/lib/animation-variants";
 
 export default function CTA() {
+  const scrollToJoin = () => {
+    document.getElementById("join")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToTrust = () => {
+    document.getElementById("trust")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <motion.div
-      className="flex w-full max-w-2xl flex-col gap-2"
+      className="relative flex min-h-[100dvh] w-full max-w-7xl flex-col items-center justify-center overflow-hidden bg-zinc-950 text-center"
       variants={containerVariants}
       initial="hidden"
       animate="visible">
-      <motion.div variants={itemVariants}>
-        <div className="flex items-center justify-center">
-          <div className="flex w-fit items-center justify-center rounded-full bg-muted/80 text-center">
-            <AnimatedShinyText className="px-4 py-1">
-              <span>Coming soon!</span>
-            </AnimatedShinyText>
-          </div>
-        </div>
-      </motion.div>
-
       <motion.img
         src="/logo.svg"
-        alt="logo"
-        className="mx-auto h-24 w-24"
+        alt="Rolebound logo"
+        className="mb-8 h-24 w-24"
         variants={itemVariants}
       />
 
-      <motion.div variants={itemVariants}>
-        <TextBlur
-          className="text-center text-3xl font-medium tracking-tighter sm:text-5xl"
-          text="A Simple Next.js Waitlist Template with Notion as CMS"
-        />
-      </motion.div>
+      <motion.h1
+        variants={itemVariants}
+        className="mx-auto w-full max-w-6xl text-balance text-center font-semibold leading-[0.95] text-zinc-50"
+        style={{ fontSize: "clamp(3rem, 5.4vw, 5.75rem)" }}>
+        The CRM for job seekers who need jobs and the right people to contact
+      </motion.h1>
 
-      <motion.div variants={itemVariants}>
-        <TextBlur
-          className="mx-auto max-w-[27rem] pt-1.5 text-center text-base text-zinc-300 sm:text-lg"
-          text="Join the waitlist to get early access of the product and recieve updates on the progress!"
-          duration={0.8}
-        />
+      <motion.p
+        variants={itemVariants}
+        className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-300 md:text-xl">
+        Track fitting jobs, see who to contact, and approve outreach that
+        improves your odds.
+      </motion.p>
+
+      <motion.div
+        variants={itemVariants}
+        className="mt-10 flex w-full max-w-xl flex-col justify-center gap-3 sm:flex-row">
+        <button
+          type="button"
+          onClick={scrollToJoin}
+          className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-yellow-100 px-6 text-sm font-semibold text-zinc-950 transition-transform duration-300 hover:scale-[1.02]">
+          Join the waitlist
+          <ArrowRight className="h-4 w-4" weight="bold" />
+        </button>
+
       </motion.div>
     </motion.div>
   );

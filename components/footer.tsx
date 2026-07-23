@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/animation-variants";
 
@@ -8,18 +7,10 @@ export default function Footer() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="mt-auto flex w-full items-center justify-center gap-1 border-t bg-background p-6 text-muted-foreground md:justify-start">
+      className="mt-auto flex w-full items-center justify-center border-t bg-background p-6 text-center text-sm text-muted-foreground md:justify-start md:text-left">
       <motion.div variants={itemVariants}>
-        Brought to you by{" "}
-        <Link
-          href="https://lakshb.dev"
-          rel="noopener noreferrer"
-          target="_blank">
-          <span className="text-zinc-300 underline underline-offset-2 transition-all duration-200 ease-linear hover:text-yellow-200">
-            lakshaybhushan
-          </span>
-          .
-        </Link>
+        Rolebound helps candidates review, qualify, approve, and move the right
+        opportunities forward.
       </motion.div>
     </motion.div>
   );
